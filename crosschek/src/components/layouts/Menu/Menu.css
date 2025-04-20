@@ -6,6 +6,16 @@ nav{
   height: 50px;
 }
 
+nav a {
+  text-decoration: none;
+  color: #000;
+  transition: all 0.3s ease;
+}
+
+nav a:hover {
+  color: #646cff;
+}
+
 ul{
   display: flex;
   gap: 20px;
