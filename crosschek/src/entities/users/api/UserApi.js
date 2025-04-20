@@ -120,6 +120,33 @@ class UserApi {
 
 		return response.json()
 	}
+
+	static async updateUser(id, userData) {
+		try {
+			const response = await this.authorizedRequest(
+				`${import.meta.env.VITE_API_URL}/accounts/users/${id}/`,
+				{
+					method: 'PUT',
+					body: JSON.stringify(userData),
+				}
+			)
+
+			if (!response.ok) {
+				const errorData = await response.json()
+				console.error('Error response:', errorData)
+				throw new Error(
+					errorData.detail ||
+						JSON.stringify(errorData) ||
+						'Ошибка обновления данных пользователя'
+				)
+			}
+
+			return response.json()
+		} catch (error) {
+			console.error('Update user error:', error)
+			throw error
+		}
+	}
 }
 
 export default UserApi

@@ -50,9 +50,9 @@ function RegForm() {
 					onChange={e => setPassword(e.target.value)}
 				/>
 				<button type='submit'>Register</button>
-				{userState.error && <p className='error'>{userState.error}</p>}
-				{userState.loading && <p className='loading'>Loading...</p>}
 			</form>
+			{userState.error && <p className='error'>{userState.error}</p>}
+			{userState.loading && <p className='loading'>Loading...</p>}
 		</div>
 	)
 }
