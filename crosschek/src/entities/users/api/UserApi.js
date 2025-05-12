@@ -29,6 +29,27 @@ class UserApi {
 		return data
 	}
 
+	static async register(username, email, password){
+		const response = await fetch(
+			`${import.meta.env.VITE_API_URL}/accounts/register/`,
+			{
+				method: 'POST',
+				headers: {
+					'Content-Type': 'application/json',
+					Accept: 'application/json',
+				},
+				body: JSON.stringify({ username, email, password }),
+			}
+		)
+
+		if (!response.ok) {
+			throw new Error('Ошибка регистрации')
+		}
+
+		const data = await response.json()
+		return data
+	}
+
 	static async refreshToken() {
 		const refresh = getRefreshToken()
 		if (!refresh) throw new Error('No refresh token')

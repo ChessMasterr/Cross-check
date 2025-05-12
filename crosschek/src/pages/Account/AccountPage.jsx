@@ -11,12 +11,18 @@ function AccountPage() {
 		phone_number: '',
 		telegram_account: '',
 		password: '',
+		gitlab_account: '',
+		surname: "",
+		first_name: "",
 	})
 	const [errors, setErrors] = useState({
 		email: '',
 		phone_number: '',
 		telegram_account: '',
 		password: '',
+		gitlab_account: '',
+		surname: "",
+		first_name: "",
 	})
 
 	const getUser = async (id = 1) => {
@@ -27,6 +33,10 @@ function AccountPage() {
 				email: userData.email || '',
 				phone_number: userData.phone_number || '',
 				telegram_account: userData.telegram_account || '',
+				gitlab_account: userData.gitlab_account || '',
+				surname: userData.surname || '',
+				username: userData.username || '',
+				first_name: userData.first_name || '',
 				password: '',
 			})
 		} catch (error) {
@@ -41,6 +51,9 @@ function AccountPage() {
 			phone_number: '',
 			telegram_account: '',
 			password: '',
+			gitlab_account: '',
+			surname: "",
+			first_name: "",
 		})
 	}
 
@@ -50,6 +63,9 @@ function AccountPage() {
 			email: user.email || '',
 			phone_number: user.phone_number || '',
 			telegram_account: user.telegram_account || '',
+			gitlab_account: user.gitlab_account || '',
+			surname: user.surname || '',
+			first_name: user.first_name || '',
 			password: '',
 		})
 		setErrors({
@@ -57,6 +73,9 @@ function AccountPage() {
 			phone_number: '',
 			telegram_account: '',
 			password: '',
+			gitlab_account: '',
+			surname: "",
+			first_name: "",
 		})
 	}
 
@@ -86,6 +105,9 @@ function AccountPage() {
 					email: errorData.email?.[0] || '',
 					phone_number: errorData.phone_number?.[0] || '',
 					telegram_account: errorData.telegram_account?.[0] || '',
+					gitlab_account: errorData.gitlab_account?.[0] || '',
+					surname: errorData.surname?.[0] || '',
+					first_name: errorData.first_name?.[0] || '',
 					password: errorData.password?.[0] || '',
 				}
 				setErrors(newErrors)
@@ -102,6 +124,8 @@ function AccountPage() {
 
 	useEffect(() => {
 		getUser()
+		console.log(user);
+
 	}, [])
 
 	return (
@@ -119,6 +143,18 @@ function AccountPage() {
 				</p>
 				<p>
 					<strong>Telegram:</strong> {user.telegram_account}
+				</p>
+				<p>
+					<strong>Git:</strong> {user.gitlab_account}
+				</p>
+				<p>
+					<strong>Last Name:</strong> {user.last_name}
+				</p>
+				<p>
+					<strong>First Name:</strong> {user.first_name}
+				</p>
+				<p>
+					<strong>Surname:</strong> {user.surname}
 				</p>
 				<button onClick={handleEdit} className='edit-button'>
 					Edit Profile
@@ -169,6 +205,62 @@ function AccountPage() {
 						)}
 					</div>
 					<div className='form-group'>
+						<label>Git:</label>
+						<input
+							type='text'
+							name='gitlab_account'
+							value={formData.gitlab_account}
+							onChange={handleChange}
+							placeholder='git'
+							className={errors.gitlab_account ? 'input-error' : ''}
+						/>
+						{errors.gitlab_account && (
+							<span className='error-message'>{errors.gitlab_account}</span>
+						)}
+					</div>
+					<div className='form-group'>
+						<label>Surname:</label>
+						<input
+							type='text'
+							name='surname'
+							value={formData.surname}
+							onChange={handleChange}
+							placeholder='Surname'
+							className={errors.surname ? 'input-error' : ''}
+						/>
+						{errors.surname && (
+							<span className='error-message'>{errors.surname}</span>
+						)}
+					</div>
+					<div className='form-group'>
+						<label>First Name:</label>
+						<input
+							type='text'
+							name='first_name'
+							value={formData.first_name}
+							onChange={handleChange}
+							placeholder='First Name'
+							className={errors.first_name ? 'input-error' : ''}
+						/>
+						{errors.first_name && (
+							<span className='error-message'>{errors.first_name}</span>
+						)}
+					</div>
+					<div className='form-group'>
+						<label>Last Name:</label>
+						<input
+							type='text'
+							name='first_name'
+							value={formData.first_name}
+							onChange={handleChange}
+							placeholder='First Name'
+							className={errors.first_name ? 'input-error' : ''}
+						/>
+						{errors.first_name && (
+							<span className='error-message'>{errors.first_name}</span>
+						)}
+					</div>
+					<div className='form-group'>
 						<label>Password:</label>
 						<input
 							type='password'
@@ -182,6 +274,7 @@ function AccountPage() {
 							<span className='error-message'>{errors.password}</span>
 						)}
 					</div>
+
 					<div className='form-actions'>
 						<button type='submit' className='save-button'>
 							Save Changes
