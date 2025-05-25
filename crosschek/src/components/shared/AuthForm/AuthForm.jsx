@@ -8,8 +8,8 @@ import { setTokenStorage, setUserStorage } from '../../../utils/auth.utils'
 function AuthForm() {
 	const { dispatchUser, userState } = useContext(UserContext)
 	const navigate = useNavigate()
-	const [username, setUsername] = useState('')
-	const [password, setPassword] = useState('')
+	const [username, setUsername] = useState('User4')
+	const [password, setPassword] = useState('User1234')
 
 	const handleSubmit = async e => {
 		e.preventDefault()

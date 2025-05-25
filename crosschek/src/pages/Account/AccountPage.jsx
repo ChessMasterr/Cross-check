@@ -14,7 +14,9 @@ function AccountPage() {
 		gitlab_account: '',
 		surname: "",
 		first_name: "",
+		last_name: "",
 	})
+
 	const [errors, setErrors] = useState({
 		email: '',
 		phone_number: '',
@@ -23,7 +25,9 @@ function AccountPage() {
 		gitlab_account: '',
 		surname: "",
 		first_name: "",
+		last_name: "",
 	})
+
 
 	const getUser = async (id = 1) => {
 		try {
@@ -37,6 +41,7 @@ function AccountPage() {
 				surname: userData.surname || '',
 				username: userData.username || '',
 				first_name: userData.first_name || '',
+				last_name: userData.last_name || '',
 				password: '',
 			})
 		} catch (error) {
@@ -108,6 +113,7 @@ function AccountPage() {
 					gitlab_account: errorData.gitlab_account?.[0] || '',
 					surname: errorData.surname?.[0] || '',
 					first_name: errorData.first_name?.[0] || '',
+					last_name: errorData.last_name?.[0] || '',
 					password: errorData.password?.[0] || '',
 				}
 				setErrors(newErrors)
@@ -250,14 +256,14 @@ function AccountPage() {
 						<label>Last Name:</label>
 						<input
 							type='text'
-							name='first_name'
-							value={formData.first_name}
+							name='last_name'
+							value={formData.last_name}
 							onChange={handleChange}
-							placeholder='First Name'
-							className={errors.first_name ? 'input-error' : ''}
+							placeholder='Last Name'
+							className={errors.last_name ? 'input-error' : ''}
 						/>
-						{errors.first_name && (
-							<span className='error-message'>{errors.first_name}</span>
+						{errors.last_name && (
+							<span className='error-message'>{errors.last_name}</span>
 						)}
 					</div>
 					<div className='form-group'>
