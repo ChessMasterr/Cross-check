@@ -1,0 +1,43 @@
+.criterion-item {
+	background: #fff;
+	border-radius: 8px;
+	padding: 16px;
+	margin-bottom: 16px;
+	box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.criterion-header {
+	margin-bottom: 12px;
+}
+
+.criterion-header h4 {
+	margin: 0 0 8px 0;
+	color: #333;
+	font-size: 1.1em;
+}
+
+.criterion-description {
+	color: #666;
+	margin: 8px 0;
+	font-size: 0.9em;
+}
+
+.criterion-max-score {
+	color: #888;
+	font-size: 0.9em;
+	margin: 8px 0;
+}
+
+.criterion-input input {
+	width: 100%;
+	padding: 8px;
+	border: 1px solid #ddd;
+	border-radius: 4px;
+	font-size: 1em;
+}
+
+.criterion-input input:focus {
+	outline: none;
+	border-color: #007bff;
+	box-shadow: 0 0 0 2px rgba(0, 123, 255, 0.25);
+}

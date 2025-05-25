@@ -29,7 +29,7 @@ class UserApi {
 		return data
 	}
 
-	static async register(username, email, password){
+	static async register(username, email, password) {
 		const response = await fetch(
 			`${import.meta.env.VITE_API_URL}/accounts/register/`,
 			{
@@ -85,6 +85,7 @@ class UserApi {
 				setTokenStorage(newTokens.access, newTokens.refresh)
 				access = newTokens.access
 			} catch (error) {
+				console.error('Token refresh error:', error)
 				clearTokenUserStorage()
 				throw new Error('Session expired')
 			}
@@ -130,6 +131,7 @@ class UserApi {
 				// Повторяем запрос с новым токеном
 				return this.getUserById(id)
 			} catch (error) {
+				console.error('Token refresh error:', error)
 				clearTokenUserStorage()
 				throw new Error('Session expired')
 			}
@@ -165,6 +167,31 @@ class UserApi {
 			return response.json()
 		} catch (error) {
 			console.error('Update user error:', error)
+			throw error
+		}
+	}
+
+	static async getCurrentUser() {
+		try {
+			// Получаем ID пользователя из токена
+			const accessToken = getAccessToken()
+			if (!accessToken) {
+				throw new Error('No access token')
+			}
+
+			// Декодируем JWT токен, чтобы получить ID пользователя
+			const tokenParts = accessToken.split('.')
+			if (tokenParts.length !== 3) {
+				throw new Error('Invalid token format')
+			}
+
+			const payload = JSON.parse(atob(tokenParts[1]))
+			const userId = payload.user_id
+
+			// Используем существующий метод getUserById
+			return this.getUserById(userId)
+		} catch (error) {
+			console.error('Get current user error:', error)
 			throw error
 		}
 	}

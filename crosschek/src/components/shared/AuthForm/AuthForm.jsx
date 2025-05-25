@@ -18,11 +18,15 @@ function AuthForm() {
 		try {
 			const data = await UserApi.auth(username, password)
 			setTokenStorage(data.access, data.refresh)
-			setUserStorage(data.user)
+
+			// Fetch current user data after successful login
+			const userData = await UserApi.getCurrentUser()
+			setUserStorage(userData)
+
 			dispatchUser({
 				type: 'SET_USER',
 				payload: {
-					user: data.user,
+					user: userData,
 				},
 			})
 			navigate('/')
@@ -52,8 +56,8 @@ function AuthForm() {
 				/>
 				<button type='submit'>Login</button>
 			</form>
-				{userState.error && <p className='error'>{userState.error}</p>}
-				{userState.loading && <p className='loading'>Loading...</p>}
+			{userState.error && <p className='error'>{userState.error}</p>}
+			{userState.loading && <p className='loading'>Loading...</p>}
 		</div>
 	)
 }
