@@ -1,0 +1,23 @@
+.home-page {
+    padding: 24px;
+}
+
+.home-page h1 {
+    margin-bottom: 24px;
+    color: #2c3e50;
+}
+
+.home-page-loading,
+.home-page-error {
+    text-align: center;
+    padding: 32px;
+    font-size: 1.1em;
+}
+
+.home-page-loading {
+    color: #6c757d;
+}
+
+.home-page-error {
+    color: #dc3545;
+}

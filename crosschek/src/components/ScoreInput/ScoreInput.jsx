@@ -1,8 +1,9 @@
 import { useState } from 'react'
 import './ScoreInput.css'
 
-function ScoreInput({ maxScore, onChange, initialValue = 0 }) {
+function ScoreInput({ maxScore, onChange, initialValue = 0, initialComment = '' }) {
 	const [value, setValue] = useState(initialValue)
+	const [comment, setComment] = useState(initialComment)
 	const [error, setError] = useState('')
 
 	const handleChange = e => {
@@ -32,7 +33,13 @@ function ScoreInput({ maxScore, onChange, initialValue = 0 }) {
 		}
 
 		setError('')
-		onChange?.(numValue)
+		onChange?.({ score: numValue, comment })
+	}
+
+	const handleCommentChange = e => {
+		const newComment = e.target.value
+		setComment(newComment)
+		onChange?.({ score: Number(value), comment: newComment })
 	}
 
 	return (
@@ -47,6 +54,13 @@ function ScoreInput({ maxScore, onChange, initialValue = 0 }) {
 				title={`Введите оценку от 0 до ${maxScore}`}
 			/>
 			{error && <div className='score-input-error'>{error}</div>}
+			<textarea
+				placeholder='Комментарий к оценке (необязательно)'
+				value={comment}
+				onChange={handleCommentChange}
+				className='score-input-comment'
+				rows={2}
+			/>
 			<div className='score-input-hint'>Максимальная оценка: {maxScore}</div>
 		</div>
 	)

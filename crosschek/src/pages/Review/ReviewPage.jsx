@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react'
 import ReviewApi from '../../entities/users/api/RewiewApi'
 import CriteriaApi from '../../entities/criteria/api/criteriaApi'
+import UserApi from '../../entities/users/api/UserApi'
 import ScoreInput from '../../components/ScoreInput/ScoreInput'
 import './ReviewPage.css'
 
@@ -11,28 +12,36 @@ function ReviewPage() {
 	const [criteria, setCriteria] = useState([])
 	const [scores, setScores] = useState({})
 	const [saving, setSaving] = useState(false)
+	const [scoreData, setScoreData] = useState({})
 
-	const handleScoreChange = (criterionId, score) => {
-		setScores(prev => ({
+	const handleScoreChange = (criterionId, data) => {
+		setScoreData(prev => ({
 			...prev,
-			[criterionId]: score,
+			[criterionId]: data,
 		}))
 	}
 
-	const handleSaveScores = async reviewId => {
+	const handleSaveGrades = async (reviewItem) => {
 		try {
 			setSaving(true)
-			// Преобразуем объект scores в массив для API
-			const scoresArray = Object.entries(scores).map(
-				([criterionId, score]) => ({
-					criterion: criterionId,
-					score: score,
-				})
-			)
+			const user = JSON.parse(localStorage.getItem('user'))
+			const rated_by = user?.id
+			const now = new Date().toISOString()
+			const submission = reviewItem.submission.id
 
-			await CriteriaApi.saveScores(reviewId, scoresArray)
+			const promises = criteria.map(criterion => {
+				const data = scoreData[criterion.id] || {}
+				return CriteriaApi.saveGrade({
+					submission,
+					comment: data.comment || '',
+					critety: criterion.id,
+					score: data.score || 0,
+					date_grade: now,
+					rated_by,
+				})
+			})
+			await Promise.all(promises)
 			console.log('Оценки успешно сохранены')
-			// Можно добавить уведомление об успешном сохранении
 		} catch (error) {
 			console.error('Ошибка при сохранении оценок:', error)
 			setError(error)
@@ -103,8 +112,9 @@ function ReviewPage() {
 										</p>
 										<ScoreInput
 											maxScore={criterion.max_score}
-											onChange={score => handleScoreChange(criterion.id, score)}
-											initialValue={scores[criterion.id] || 0}
+											onChange={data => handleScoreChange(criterion.id, data)}
+											initialValue={scoreData[criterion.id]?.score || 0}
+											initialComment={scoreData[criterion.id]?.comment || ''}
 										/>
 									</div>
 								))
@@ -114,7 +124,7 @@ function ReviewPage() {
 							<div className='review-actions'>
 								<button
 									className='save-button'
-									onClick={() => handleSaveScores(item.id)}
+									onClick={() => handleSaveGrades(item)}
 									disabled={saving}
 								>
 									{saving ? 'Сохранение...' : 'Сохранить оценки'}

@@ -1,0 +1,46 @@
+.grades-list {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    padding: 16px;
+}
+
+.grade-item {
+    background-color: #f8f9fa;
+    border-radius: 8px;
+    padding: 16px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.grade-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 8px;
+}
+
+.grade-score {
+    font-weight: bold;
+    font-size: 1.1em;
+    color: #2c3e50;
+}
+
+.grade-date {
+    color: #6c757d;
+    font-size: 0.9em;
+}
+
+.grade-comment {
+    color: #495057;
+    line-height: 1.5;
+    margin-top: 8px;
+    padding-top: 8px;
+    border-top: 1px solid #dee2e6;
+}
+
+.grades-list-empty {
+    text-align: center;
+    color: #6c757d;
+    padding: 32px;
+    font-size: 1.1em;
+}

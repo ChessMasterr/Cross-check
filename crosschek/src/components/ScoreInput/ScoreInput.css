@@ -44,3 +44,14 @@
 	opacity: 1;
 	height: 24px;
 }
+
+.score-input-comment {
+	margin-top: 4px;
+	padding: 8px;
+	border: 1px solid #ccc;
+	border-radius: 4px;
+	font-size: 14px;
+	resize: vertical;
+	min-height: 32px;
+	max-width: 100%;
+}
