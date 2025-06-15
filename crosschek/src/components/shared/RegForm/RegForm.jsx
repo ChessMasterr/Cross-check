@@ -7,9 +7,9 @@ import { useNavigate } from 'react-router-dom'
 function RegForm() {
 	const { dispatchUser, userState } = useContext(UserContext)
 	const navigate = useNavigate()
-	const [username, setUsername] = useState('')
-	const [email, setEmail] = useState('')
-	const [password, setPassword] = useState('')
+	const [username, setUsername] = useState('User4')
+	const [email, setEmail] = useState('user@gmail.com')
+	const [password, setPassword] = useState('user1234')
 
 	const handleSubmit = async e => {
 		e.preventDefault()

@@ -1,46 +1,81 @@
 .grades-list {
     display: flex;
     flex-direction: column;
-    gap: 16px;
-    padding: 16px;
+    gap: 2rem;
+}
+
+.submission-grades {
+    background: #1a1a1a;
+    border-radius: 8px;
+    padding: 1.5rem;
+}
+
+.submission-grades h3 {
+    margin-bottom: 1rem;
+    color: #fff;
+}
+
+.criteria-grades {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+.criteria-item {
+    background: #2a2a2a;
+    border-radius: 6px;
+    padding: 1rem;
+}
+
+.criteria-item h4 {
+    margin-bottom: 1rem;
+    color: #fff;
+}
+
+.grades-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 1rem;
 }
 
 .grade-item {
-    background-color: #f8f9fa;
-    border-radius: 8px;
-    padding: 16px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    background: #333;
+    border-radius: 4px;
+    padding: 1rem;
 }
 
 .grade-header {
     display: flex;
     justify-content: space-between;
-    align-items: center;
-    margin-bottom: 8px;
+    margin-bottom: 0.5rem;
 }
 
 .grade-score {
     font-weight: bold;
-    font-size: 1.1em;
-    color: #2c3e50;
+    color: #fff;
 }
 
 .grade-date {
-    color: #6c757d;
-    font-size: 0.9em;
+    color: #888;
+    font-size: 0.9rem;
 }
 
 .grade-comment {
-    color: #495057;
-    line-height: 1.5;
-    margin-top: 8px;
-    padding-top: 8px;
-    border-top: 1px solid #dee2e6;
+    color: #ccc;
+    margin: 0.5rem 0;
+    font-size: 0.9rem;
+}
+
+.grade-reviewer {
+    color: #888;
+    font-size: 0.9rem;
+    margin-top: 0.5rem;
 }
 
 .grades-list-empty {
     text-align: center;
-    color: #6c757d;
-    padding: 32px;
-    font-size: 1.1em;
+    color: #888;
+    padding: 2rem;
+    background: #1a1a1a;
+    border-radius: 8px;
 }

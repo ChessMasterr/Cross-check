@@ -9,7 +9,7 @@ function AuthForm() {
 	const { dispatchUser, userState } = useContext(UserContext)
 	const navigate = useNavigate()
 	const [username, setUsername] = useState('User4')
-	const [password, setPassword] = useState('User1234')
+	const [password, setPassword] = useState('user1234')
 
 	const handleSubmit = async e => {
 		e.preventDefault()
@@ -41,7 +41,7 @@ function AuthForm() {
 	return (
 		<div className='auth-form'>
 			<h2>Login</h2>
-			<form onSubmit={handleSubmit}>
+			<form onSubmit={handleSubmit} className='card-back'>
 				<input
 					type='text'
 					placeholder='username'

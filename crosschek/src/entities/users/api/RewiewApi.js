@@ -18,9 +18,8 @@ class ReviewApi {
 
 	static async getCriteria(taskId) {
 		console.log('Fetching criteria for task:', taskId)
-		const url = `${
-			import.meta.env.VITE_API_URL
-		}/assignments/criteria/?task=${taskId}`
+		const url = `${import.meta.env.VITE_API_URL
+			}/assignments/criteria/?task=${taskId}`
 		console.log('Request URL:', url)
 
 		const response = await fetch(url, {

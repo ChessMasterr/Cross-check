@@ -1,4 +1,15 @@
 .header{
-  background-color: #f0f0f0;
+  backdrop-filter: blur(20px);
+  background-color: #140C1F;
   height: 50px;
+  opacity: 0.8;
+  color: #fff;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 20px;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 100;
 }

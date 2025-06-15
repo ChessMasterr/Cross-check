@@ -137,7 +137,7 @@ function AccountPage() {
 	return (
 		<div className='account-page'>
 			<h1>Account</h1>
-			<div className='account-info'>
+			<div className='account-info card-back'>
 				<p>
 					<strong>Username:</strong> {user.username}
 				</p>
@@ -282,13 +282,13 @@ function AccountPage() {
 					</div>
 
 					<div className='form-actions'>
-						<button type='submit' className='save-button'>
+						<button type='submit' className='save-button hover-right-to-left '>
 							Save Changes
 						</button>
 						<button
 							type='button'
 							onClick={handleClose}
-							className='cancel-button'
+							className='cancel-button hover-left-to-right'
 						>
 							Cancel
 						</button>

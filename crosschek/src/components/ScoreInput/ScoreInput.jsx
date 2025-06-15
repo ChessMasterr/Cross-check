@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import './ScoreInput.css'
 
 function ScoreInput({ maxScore, onChange, initialValue = 0, initialComment = '' }) {
@@ -6,32 +6,47 @@ function ScoreInput({ maxScore, onChange, initialValue = 0, initialComment = '' 
 	const [comment, setComment] = useState(initialComment)
 	const [error, setError] = useState('')
 
+	// Обновляем значения только при изменении initialValue или initialComment
+	useEffect(() => {
+		if (initialValue !== undefined) {
+			setValue(initialValue)
+		}
+		if (initialComment !== undefined) {
+			setComment(initialComment)
+		}
+	}, [initialValue, initialComment])
+
 	const handleChange = e => {
 		const newValue = e.target.value
 		setValue(newValue)
 
-		// Валидация
+		// Валидация для отображения ошибок
 		if (newValue === '') {
 			setError('Поле не может быть пустым')
+			onChange?.({ score: undefined, comment })
 			return
 		}
 
 		const numValue = Number(newValue)
 		if (isNaN(numValue)) {
 			setError('Введите число')
+			onChange?.({ score: undefined, comment })
 			return
 		}
 
 		if (numValue < 0) {
 			setError('Оценка не может быть отрицательной')
+			onChange?.({ score: undefined, comment })
 			return
 		}
 
 		if (numValue > maxScore) {
 			setError(`Максимальная оценка: ${maxScore}`)
+			onChange?.({ score: undefined, comment })
 			return
 		}
 
+		// Если значение валидно, обновляем состояние
 		setError('')
 		onChange?.({ score: numValue, comment })
 	}
@@ -39,7 +54,7 @@ function ScoreInput({ maxScore, onChange, initialValue = 0, initialComment = '' 
 	const handleCommentChange = e => {
 		const newComment = e.target.value
 		setComment(newComment)
-		onChange?.({ score: Number(value), comment: newComment })
+		onChange?.({ score: Number(value) || undefined, comment: newComment })
 	}
 
 	return (

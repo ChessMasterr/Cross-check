@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Wave</title>
+</head>
+
+<body>
+    <div class="wave">
+        <span style="--i:1">A</span>
+        <span style="--i:2">L</span>
+        <span style="--i:3">A</span>
+        <span style="--i:4">B</span>
+        <span style="--i:5">U</span>
+        <span style="--i:6">G</span>
+        <span style="--i:7">A</span>
+        <span style="--i:8">!</span>
+    </div>
+
+    <style>
+        .wave {
+            letter-spacing: 5px;
+            -webkit-box-reflect: below 0 -webkit-gradient(linear, left bottom, left top, from(rgb(0, 0, 0)), to(rgba(0, 0, 0, 0)));
+            -moz-box-reflect: below 0 -moz-linear-gradient(top, rgb(0, 0, 0), rgba(0, 0, 0, 0));
+            box-reflect: below 0 linear-gradient(to top, rgb(0, 0, 0), rgba(0, 0, 0, 0));
+        }
+
+        .wave span {
+            display: inline-block;
+            font-size: 5vw;
+            animation: wave 2s infinite calc(0.1s * var(--i));
+            -webkit-animation: wave 2s infinite calc(0.1s * var(--i));
+            /* Safari and Chrome */
+            -moz-animation: wave 2s infinite calc(0.1s * var(--i));
+            /* Firefox */
+        }
+
+        @keyframes wave {
+
+            0%,
+            40%,
+            100% {
+                transform: translateY(0);
+            }
+
+            20% {
+                transform: translateY(-20px);
+            }
+        }
+    </style>
+</body>
+
+</html>

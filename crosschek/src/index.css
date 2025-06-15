@@ -1,36 +1,63 @@
 :root {
+  /* Основные цвета */
+  --color-primary: #646cff;
+  --color-primary-hover: #535bf2;
+  --color-background: #140C1F;
+  --color-background-light: #242424;
+  --color-border: #AD1AAF;
+  --color-text: rgba(255, 255, 255, 0.87);
+  --color-text-light: #213547;
+  --color-card-background: rgba(127, 17, 224, 0.1);
+  --color-input-border: #ccc;
+  --color-button-bg: #1a1a1a;
+  --color-button-bg-light: #f9f9f9;
+
   font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
   line-height: 1.5;
   font-weight: 400;
 
   color-scheme: light dark;
-  color: rgba(255, 255, 255, 0.87);
-  background-color: #242424;
+  color: var(--color-text);
+  background-color: var(--color-background-light);
 
   font-synthesis: none;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  
+
+  position: relative;
+  z-index: 10;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
 a {
   font-weight: 500;
-  color: #646cff;
+  color: var(--color-primary);
   text-decoration: inherit;
 }
+
 a:hover {
-  color: #535bf2;
+  color: var(--color-primary-hover);
 }
 
 ul {
-	list-style-type: none;
+  list-style-type: none;
 }
 
 body {
   margin: 0;
   min-width: 320px;
   min-height: 100vh;
+  background-color: var(--color-background);
+  background-image: url(../public/pic.png);
+  background-repeat: no-repeat;
+  background-position: top;
+  background-size: contain;
 }
 
 h1 {
@@ -38,43 +65,66 @@ h1 {
   line-height: 1.1;
 }
 
+h2{
+  margin-bottom: 20px;
+}
+
 button {
   border-radius: 8px;
-  border: 1px solid transparent;
+  border: 1px solid #fff;
   padding: 0.6em 1.2em;
   font-size: 1em;
   font-weight: 500;
   font-family: inherit;
-  background-color: #1a1a1a;
+  background-color: var(--color-button-bg);
   cursor: pointer;
-  transition: border-color 0.25s;
+  transition: all 0.25s ease;
+  background-color: var(--color-card-background);
 }
+
 button:hover {
-  border-color: #646cff;
+  border-color: var(--color-primary);
 }
+
 button:focus,
 button:focus-visible {
   outline: 4px auto -webkit-focus-ring-color;
 }
 
+main {
+  padding-top: 60px;
+  position: relative;
+  z-index: 10;
+}
+
 .container {
   width: 100%;
   margin: 0 auto;
-  padding: 0 20px;  
+  padding: 0 20px;
+}
+
+.flex-block {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
 }
 
 @media (prefers-color-scheme: light) {
   :root {
-    color: #213547;
+    color: var(--color-text-light);
     background-color: #ffffff;
   }
+
   a:hover {
-    color: #747bff;
+    color: var(--color-primary-hover);
   }
+
   button {
-    background-color: #f9f9f9;
+    background-color: var(--color-button-bg-light);
   }
 }
+
+
 
 /* form */
 form {
@@ -82,24 +132,54 @@ form {
   flex-direction: column;
   gap: 15px;
   padding: 20px;
-  border: 1px solid #ccc;
+  border: 1px solid var(--color-input-border);
   border-radius: 10px;
   max-width: 400px;
   margin: 0 auto;
 }
 
+.card-back {
+  background-color: var(--color-card-background);
+  border: 1px solid var(--color-border);
+}
+
 input {
   padding: 10px;
-  border: 1px solid #ccc;
+  border: 1px solid var(--color-input-border);
   border-radius: 5px;
   transition: all 0.3s ease;
+  background-color: var(--color-card-background);
 }
 
 input:focus {
-  border-color: #646cff;
+  border-color: var(--color-primary);
   outline: none;
+}
+textarea{
+  background-color: var(--color-card-background);
 }
 
 form button {
   margin-top: 10px;
+}
+
+
+.hover-right-to-left {
+  background: linear-gradient(#1095c1 0 0) var(--p, 0) / var(--p, 0) no-repeat;
+  transition: .4s, background-position 0s;
+}
+
+.hover-right-to-left:hover {
+  --p: 100%;
+  color: #fff;
+}
+
+.hover-left-to-right {
+  background: linear-gradient(#1095c1 0 0) 0 / var(--p, 0) no-repeat;
+  transition: .4s, background-position 0s;
+}
+
+.hover-left-to-right:hover {
+  --p: 100%;
+  color: #fff;
 }

@@ -1,18 +1,32 @@
-import React, { useContext } from 'react'
+import React, { useContext, useEffect } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import './Menu.css'
 import UserContext from '../../../context/UserContext'
-import { clearTokenUserStorage } from '../../../utils/auth.utils'
+import { clearTokenUserStorage, getUserStorage } from '../../../utils/auth.utils'
+
 function Menu() {
 	const { dispatchUser, userState } = useContext(UserContext)
 	const navigate = useNavigate()
 
+	useEffect(() => {
+		// Проверяем наличие пользователя в localStorage при загрузке
+		const user = getUserStorage()
+		if (user) {
+			dispatchUser({
+				type: 'SET_USER',
+				payload: {
+					user: user,
+				},
+			})
+		}
+	}, [dispatchUser])
 
 	const handleLogout = () => {
 		dispatchUser({ type: 'CLEAR_USER' })
 		clearTokenUserStorage()
 		navigate('/log')
 	}
+
 	return (
 		<nav>
 			<ul>
@@ -21,7 +35,6 @@ function Menu() {
 				</li>
 				{userState.user ? (
 					<>
-
 						<li>
 							<Link to='/review'>Review</Link>
 						</li>
@@ -44,8 +57,6 @@ function Menu() {
 						</li>
 					</>
 				)}
-
-
 			</ul>
 		</nav>
 	)
