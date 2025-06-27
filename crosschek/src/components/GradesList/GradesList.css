@@ -15,6 +15,26 @@
     color: #fff;
 }
 
+.task-description {
+    color: #ccc;
+    margin-bottom: 1rem;
+    font-size: 0.9rem;
+}
+
+.total-scores {
+    background: #2a2a2a;
+    border-radius: 6px;
+    padding: 1rem;
+    margin-bottom: 1.5rem;
+}
+
+.total-score {
+    color: #fff;
+    font-size: 1.1rem;
+    font-weight: bold;
+    text-align: center;
+}
+
 .criteria-grades {
     display: flex;
     flex-direction: column;
@@ -27,9 +47,25 @@
     padding: 1rem;
 }
 
-.criteria-item h4 {
+.criteria-header {
     margin-bottom: 1rem;
+}
+
+.criteria-header h4 {
     color: #fff;
+    margin-bottom: 0.5rem;
+}
+
+.criteria-scores {
+    display: flex;
+    gap: 1rem;
+    color: #ccc;
+    font-size: 0.9rem;
+}
+
+.max-score,
+.average-score {
+    margin: 0;
 }
 
 .grades-grid {

@@ -259,6 +259,11 @@ function ReviewPage() {
 								<div className='review-item-name'>
 									<h4>{review.submission.student.username}</h4>
 									<p>{review.submission.student.email}</p>
+									{review.student_gitlab && (
+										<a href={review.student_gitlab} target="_blank" rel="noopener noreferrer">
+											Ссылка на задание
+										</a>
+									)}
 								</div>
 								<div className='review-item-criterias'>
 									{criteria[task.id]?.map(criterion => {

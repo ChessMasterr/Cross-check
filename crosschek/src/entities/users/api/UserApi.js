@@ -159,8 +159,8 @@ class UserApi {
 				console.error('Error response:', errorData)
 				throw new Error(
 					errorData.detail ||
-						JSON.stringify(errorData) ||
-						'Ошибка обновления данных пользователя'
+					JSON.stringify(errorData) ||
+					'Ошибка обновления данных пользователя'
 				)
 			}
 
@@ -192,6 +192,23 @@ class UserApi {
 			return this.getUserById(userId)
 		} catch (error) {
 			console.error('Get current user error:', error)
+			throw error
+		}
+	}
+
+	static async getUsers() {
+		try {
+			const response = await this.authorizedRequest(
+				`${import.meta.env.VITE_API_URL}/accounts/users/`
+			)
+
+			if (!response.ok) {
+				throw new Error('Ошибка получения списка пользователей')
+			}
+
+			return response.json()
+		} catch (error) {
+			console.error('Get users error:', error)
 			throw error
 		}
 	}

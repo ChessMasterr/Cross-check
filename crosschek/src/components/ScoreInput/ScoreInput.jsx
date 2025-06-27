@@ -65,7 +65,7 @@ function ScoreInput({ maxScore, onChange, initialValue = 0, initialComment = '' 
 				onChange={handleChange}
 				min={0}
 				max={maxScore}
-				className={`score-input ${error ? 'error' : ''}`}
+				className={`score-input  ${error ? 'error' : ''}`}
 				title={`Введите оценку от 0 до ${maxScore}`}
 			/>
 			{error && <div className='score-input-error'>{error}</div>}

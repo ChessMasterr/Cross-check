@@ -162,7 +162,7 @@ function AccountPage() {
 				<p>
 					<strong>Surname:</strong> {user.surname}
 				</p>
-				<button onClick={handleEdit} className='edit-button'>
+				<button onClick={handleEdit} className='edit-button hover-left-to-right'>
 					Edit Profile
 				</button>
 			</div>
@@ -282,7 +282,7 @@ function AccountPage() {
 					</div>
 
 					<div className='form-actions'>
-						<button type='submit' className='save-button hover-right-to-left '>
+						<button type='submit' className=' hover-right-to-left '>
 							Save Changes
 						</button>
 						<button
